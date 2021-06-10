@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">RubioMovies</string>
+    <string name="title_movie_detail">Detalhes do Filme</string>
+    <string name="action_settings">Settings</string>
+    <string name="lorem">Lorem ipsum eget tempor vitae porttitor lacus lectus habitant, elit leo adipiscing hac consectetur leo mi ultricies ut, in tincidunt quam praesent lobortis etiam ligula. quam mauris gravida neque torquent volutpat sociosqu eu felis, eu ante ac donec consequat cursus fusce euismod hendrerit, sollicitudin auctor vestibulum varius integer sapien nibh. luctus habitant justo semper ipsum posuere habitant etiam luctus sit molestie, duis porttitor urna quis neque hendrerit augue lobortis netus congue, ut pharetra nibh primis in non sodales nostra facilisis. viverra erat metus nam varius lectus, hac a potenti non felis, augue primis iaculis gravida.
+
+	Non egestas hendrerit commodo congue dolor nunc platea, diam magna elementum venenatis potenti ut. odio lectus morbi consectetur hac posuere per torquent porta, phasellus faucibus amet pharetra tortor quisque hac malesuada ultrices, orci erat phasellus tincidunt aptent ullamcorper maecenas. pretium condimentum quisque consectetur pretium odio donec quisque conubia justo, ipsum tempus dictum elementum fringilla maecenas nam at nisl, lobortis leo hac per vitae malesuada justo hendrerit. cursus donec enim consequat consectetur donec feugiat mauris aliquet placerat, potenti nulla condimentum primis taciti inceptos facilisis commodo lobortis lacus, netus odio proin vestibulum sed vehicula fermentum vehicula.
+
+	Diam fringilla mollis litora accumsan torquent aliquet etiam turpis, maecenas pulvinar semper ligula potenti neque erat, maecenas tempor vivamus proin dapibus risus lorem. potenti urna eleifend consectetur facilisis placerat tellus, integer fusce nisi lobortis accumsan laoreet sed, luctus neque luctus molestie aliquam. cursus ultricies id neque eget risus non taciti ac morbi convallis, eros litora ante erat potenti vel ultricies metus. massa dictumst mi nullam vulputate interdum aliquet morbi nec, tristique ullamcorper ut metus donec torquent sed elit, quis donec porta morbi quam orci donec. cras feugiat volutpat nisi ligula nec et augue sapien sed quam a class pellentesque erat cursus, augue ut iaculis risus ac fames semper odio quisque nec nam nisl himenaeos.
+
+	Massa ad etiam ut nulla aenean blandit, bibendum est fusce potenti tincidunt odio, rutrum quam est blandit ultricies. platea sollicitudin sem ut aliquet lorem curae urna curabitur, per sollicitudin rutrum phasellus aptent urna pretium dapibus, morbi habitant massa ac sollicitudin eu laoreet. aliquam feugiat ut dolor habitasse praesent aliquam, urna velit lectus eleifend mauris at sapien, litora leo diam pretium sodales. bibendum viverra mattis convallis odio sodales platea mi at, condimentum eu nisl velit suscipit a. sollicitudin adipiscing ad varius arcu in sagittis tellus per nec suspendisse aliquam posuere, litora condimentum vitae platea eget dolor fusce placerat varius magna curabitur.
+
+	Pellentesque himenaeos sit venenatis fames scelerisque fusce donec in vulputate praesent augue, netus sociosqu consequat pretium adipiscing nisl neque consequat et sapien, consectetur diam est in consectetur et quis convallis vestibulum venenatis. aliquam erat rutrum urna etiam sodales tristique laoreet, porttitor velit aenean accumsan quis phasellus orci ac, praesent vulputate eget maecenas integer gravida. dictumst fusce metus sit risus conubia lacus fusce neque id, integer justo taciti tortor magna accumsan id rutrum. blandit netus himenaeos molestie auctor gravida curabitur pretium aliquam, in viverra erat donec semper viverra integer phasellus pulvinar, mauris varius porttitor lacus suscipit amet donec. </string>
+    <string name="title_filmes">Filmes</string>
+    <string name="title_series">Séries</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="mais_populares">Mais Populares</string>
+    <string name="cartaz">Em Cartaz</string>
+    <string name="estreias">Próximas Estréias</string>
+    <string name="avaliacoes">Melhores Avaliações</string>
+
+
+</resources>

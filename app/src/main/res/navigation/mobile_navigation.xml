@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_movie">
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="br.com.rubiomovies.ui.favoritos.FavoritosFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/favoritos_fragment" />
+    <fragment
+        android:id="@+id/navigation_movie"
+        android:name="br.com.rubiomovies.ui.movie.MovieFragment"
+        android:label="@string/title_filmes"
+        tools:layout="@layout/movie_fragment" >
+        <action
+            android:id="@+id/action_navigation_movie_to_detailMoviesActivity"
+            app:destination="@id/detailMoviesActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_series"
+        android:name="br.com.rubiomovies.ui.series.SeriesFragment"
+        android:label="@string/title_series"
+        tools:layout="@layout/series_fragment" />
+    <activity
+        android:id="@+id/detailMoviesActivity"
+        android:name="br.com.rubiomovies.ui.detail.DetailMoviesActivity"
+        android:label="activity_movies_detail"
+        tools:layout="@layout/activity_movies_detail" />
+</navigation>
