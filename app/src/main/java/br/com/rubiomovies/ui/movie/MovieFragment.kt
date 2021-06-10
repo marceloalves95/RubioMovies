@@ -43,7 +43,6 @@ class MovieFragment : Fragment() {
 
         return binding.root
 
-
     }
 
     private fun initMoviePopulares(){
