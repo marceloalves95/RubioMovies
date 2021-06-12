@@ -2,7 +2,7 @@ package br.com.rubiomovies.ui.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.rubiomovies.api.MovieApi
+import br.com.rubiomovies.data.remote.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created 09/06/2021 at 13:50
  */
 @HiltViewModel
-class MovieUpComingViewModel@Inject constructor(private val movie: MovieApi) : ViewModel() {
+class MovieUpComingViewModel@Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
     private val _state = MutableStateFlow<MovieStates>(MovieStates.Empty)
     val state: StateFlow<MovieStates> = _state
@@ -32,7 +32,7 @@ class MovieUpComingViewModel@Inject constructor(private val movie: MovieApi) : V
             try {
                 emit(MovieStates.Loading(true))
                 delay(1000)
-                val response = movie.getMovieUpComing()
+                val response = repository.getUpComing()
                 with(response) {
                     if (isSuccessful) {
                         emit(MovieStates.Sucess(body()))

@@ -1,8 +1,7 @@
 package br.com.rubiomovies.di
 
-import br.com.rubiomovies.api.MovieApi
+import br.com.rubiomovies.data.remote.api.MovieApi
 import br.com.rubiomovies.utilities.Constants.BASE_URI_MOVIE
-import br.com.rubiomovies.utilities.Constants.BASE_URI_MOVIE_IMAGES
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

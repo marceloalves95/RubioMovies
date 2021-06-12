@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.rubiomovies.R
 import br.com.rubiomovies.databinding.MovieFragmentBinding
-import br.com.rubiomovies.domain.MovieDados
+import br.com.rubiomovies.data.remote.model.MovieDados
 import br.com.rubiomovies.ui.detail.DetailMoviesActivity
 import br.com.rubiomovies.ui.main.MainActivity
 import br.com.rubiomovies.ui.movie.MovieStates.*
@@ -26,10 +27,6 @@ class MovieFragment : Fragment() {
     private val nowPlayingViewModel:MovieNowPlayingViewModel by viewModels()
     private val upComingViewModel:MovieUpComingViewModel by viewModels()
     private val topRatedViewModel:MovieTopRatedViewModel by viewModels()
-    private lateinit var moviePopularAdapter:MovieAdapter
-    private lateinit var movieNow:MovieAdapter
-    private lateinit var movieUpComing:MovieAdapter
-    private lateinit var movieTopRated:MovieAdapter
     private var _binding: MovieFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -41,83 +38,24 @@ class MovieFragment : Fragment() {
 
        init()
 
+
         return binding.root
 
     }
 
-    private fun initMoviePopulares(){
+    private fun initMovies(recyclerView: RecyclerView, adapter: MovieAdapter){
 
-        binding.filmesPopulares.apply {
-
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-            adapter = moviePopularAdapter
+            this.adapter = adapter
         }
 
-        moviePopularAdapter.onItemClick = { position->
-
-            val titulo = moviePopularAdapter.lista[position].title
-            val poster = moviePopularAdapter.lista[position].backdrop_path
-            val detalhes = moviePopularAdapter.lista[position].overview
+        adapter.onItemClick = { position->
+            val titulo = adapter.lista[position].title
+            val poster = adapter.lista[position].backdrop_path
+            val detalhes = adapter.lista[position].overview
             passarDados(poster, titulo, detalhes)
-
-        }
-
-    }
-    private fun initMovieNow(){
-
-        binding.filmesCartaz.apply {
-
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-            adapter = movieNow
-        }
-
-        movieNow.onItemClick = { position->
-
-            val titulo = movieNow.lista[position].title
-            val poster = movieNow.lista[position].backdrop_path
-            val detalhes = movieNow.lista[position].overview
-            passarDados(poster, titulo, detalhes)
-
-        }
-
-    }
-    private fun initMovieUpComing(){
-
-        binding.filmesEstreias.apply {
-
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-            adapter = movieUpComing
-        }
-
-        movieUpComing.onItemClick = { position->
-
-            val titulo = movieUpComing.lista[position].title
-            val poster = movieUpComing.lista[position].backdrop_path
-            val detalhes = movieUpComing.lista[position].overview
-            passarDados(poster, titulo, detalhes)
-
-        }
-
-    }
-    private fun initMovieTopRated(){
-
-        binding.filmesAvaliacoes.apply {
-
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-            adapter = movieTopRated
-        }
-
-        movieTopRated.onItemClick = { position->
-
-            val titulo = movieTopRated.lista[position].title
-            val poster = movieTopRated.lista[position].backdrop_path
-            val detalhes = movieTopRated.lista[position].overview
-            passarDados(poster, titulo, detalhes)
-
         }
 
     }
@@ -126,117 +64,92 @@ class MovieFragment : Fragment() {
 
         popularViewModel.getMoviePopular()
         lifecycleScope.launchWhenStarted {
-            
-            popularViewModel.state.collect { states->
 
-                with(states){
-                    when(this){
-                        Empty -> {
+          popularViewModel.state.collect { states->
 
-                        }
-                        is Error -> {
-                            mensagemAviso(message)
-                        }
-                        is Loading -> {
-                        }
-                        is Sucess -> {
-                            response?.let {pages->
-                                moviePopularAdapter = MovieAdapter(pages.results)
-                                initMoviePopulares()
-                            }
-                        }
-                    }
-                }
+              with(states){
+                  when(this){
+                      is Error -> {
+                          mensagemAviso(message)
+                      }
+                      is Sucess -> {
+                          response?.let {pages->
+                              val moviePopularAdapter = MovieAdapter(pages.results)
+                              initMovies(binding.filmesPopulares, moviePopularAdapter)
+                          }
+                      }
+                  }
+              }
 
-            }
+          }
 
 
-        }
+      }
+      nowPlayingViewModel.getMovieNowPlaying()
+      lifecycleScope.launchWhenStarted {
 
-        nowPlayingViewModel.getMovieNowPlaying()
-        lifecycleScope.launchWhenStarted {
+          nowPlayingViewModel.state.collect { states->
 
-            nowPlayingViewModel.state.collect { states->
+              with(states){
+                  when(this){
+                      is Error -> {
+                          mensagemAviso(message)
+                      }
+                      is Sucess -> {
+                          response?.let {pages->
+                             val movieNow = MovieAdapter(pages.results)
+                              initMovies(binding.filmesCartaz, movieNow)
+                          }
+                      }
+                  }
+              }
 
-                with(states){
-                    when(this){
-                        Empty -> {
+          }
+      }
+      upComingViewModel.getMovieUpComing()
+      lifecycleScope.launchWhenStarted {
 
-                        }
-                        is Error -> {
-                            mensagemAviso(message)
-                        }
-                        is Loading -> {
+          upComingViewModel.state.collect { states->
 
-                        }
-                        is Sucess -> {
-                            response?.let {pages->
-                                movieNow = MovieAdapter(pages.results)
-                                initMovieNow()
-                            }
-                        }
-                    }
-                }
+              with(states){
+                  when(this){
+                      is Error -> {
+                          mensagemAviso(message)
+                      }
+                      is Sucess -> {
+                          response?.let {pages->
+                              val movieUpComing = MovieAdapter(pages.results)
+                              initMovies(binding.filmesEstreias, movieUpComing)
+                          }
+                      }
+                  }
+              }
 
-            }
-        }
-        upComingViewModel.getMovieUpComing()
-        lifecycleScope.launchWhenStarted {
+          }
+      }
+      topRatedViewModel.getMovieTopRated()
+      lifecycleScope.launchWhenStarted {
 
-            upComingViewModel.state.collect { states->
+          topRatedViewModel.state.collect { states->
 
-                with(states){
-                    when(this){
-                        Empty -> {
+              with(states){
+                  when(this){
+                      is Error -> {
+                          mensagemAviso(message)
+                      }
+                      is Sucess -> {
+                          response?.let {pages->
+                              val movieTopRated = MovieAdapter(pages.results)
+                              initMovies(binding.filmesAvaliacoes, movieTopRated)
+                          }
+                      }
+                  }
+              }
 
-                        }
-                        is Error -> {
-                            mensagemAviso(message)
-                        }
-                        is Loading -> {
-
-                        }
-                        is Sucess -> {
-                            response?.let {pages->
-                                movieUpComing = MovieAdapter(pages.results)
-                                initMovieUpComing()
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-        topRatedViewModel.getMovieTopRated()
-        lifecycleScope.launchWhenStarted {
-
-            topRatedViewModel.state.collect { states->
-
-                with(states){
-                    when(this){
-                        Empty -> {
-
-                        }
-                        is Error -> {
-                            mensagemAviso(message)
-                        }
-                        is Loading -> {
-
-                        }
-                        is Sucess -> {
-                            response?.let {pages->
-                                movieTopRated = MovieAdapter(pages.results)
-                                initMovieTopRated()
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-
-
+          }
+      }
     }
+
     private fun mensagemAviso(mensagem: String) {
         Snackbar.make(requireView(), mensagem, Snackbar.LENGTH_SHORT).show()
     }

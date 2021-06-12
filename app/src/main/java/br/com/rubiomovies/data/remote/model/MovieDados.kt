@@ -1,4 +1,4 @@
-package br.com.rubiomovies.domain
+package br.com.rubiomovies.data.remote.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

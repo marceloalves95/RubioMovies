@@ -1,11 +1,10 @@
 package br.com.rubiomovies.ui.movie
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.rubiomovies.databinding.MovieAdapterBinding
-import br.com.rubiomovies.domain.Movie
+import br.com.rubiomovies.data.remote.model.Movie
 import br.com.rubiomovies.utilities.Constants.BASE_URI_MOVIE_IMAGES
 import com.bumptech.glide.Glide
 

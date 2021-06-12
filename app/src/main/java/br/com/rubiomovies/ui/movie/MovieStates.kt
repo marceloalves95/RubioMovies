@@ -1,7 +1,6 @@
 package br.com.rubiomovies.ui.movie
 
-import br.com.rubiomovies.domain.Movie
-import br.com.rubiomovies.domain.Pages
+import br.com.rubiomovies.data.remote.model.Pages
 
 /**
  * @author RubioAlves

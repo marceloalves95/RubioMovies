@@ -9,5 +9,6 @@ object Constants {
     const val BASE_URI_MOVIE = "https://api.themoviedb.org/"
     const val BASE_URI_MOVIE_IMAGES = "https://image.tmdb.org/t/p/w500"
     const val PORTUGUESE_BRAZIL = "pt-BR"
+    const val STARTING_PAGE_INDEX = 1
 
 }

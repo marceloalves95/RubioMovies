@@ -2,7 +2,7 @@ package br.com.rubiomovies.ui.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.rubiomovies.api.MovieApi
+import br.com.rubiomovies.data.remote.repository.MovieRepository
 import br.com.rubiomovies.ui.movie.MovieStates.Empty
 import br.com.rubiomovies.ui.movie.MovieStates.Error
 import br.com.rubiomovies.ui.movie.MovieStates.Sucess
@@ -19,8 +19,9 @@ import javax.inject.Inject
  * @author RubioAlves
  * Created 06/06/2021 at 18:44
  */
+
 @HiltViewModel
-class MoviePopularViewModel @Inject constructor(private val movie: MovieApi) : ViewModel() {
+class MoviePopularViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
     private val _state = MutableStateFlow<MovieStates>(Empty)
     val state: StateFlow<MovieStates> = _state
@@ -36,7 +37,7 @@ class MoviePopularViewModel @Inject constructor(private val movie: MovieApi) : V
             try {
                 emit(Loading(true))
                 delay(1000)
-                val response = movie.getMoviePopular()
+                val response = repository.getMoviePopular()
                 with(response) {
                     if (isSuccessful) {
                         emit(Sucess(body()))

@@ -5,7 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.com.rubiomovies.R
 import br.com.rubiomovies.databinding.ActivityMoviesDetailBinding
-import br.com.rubiomovies.domain.MovieDados
+import br.com.rubiomovies.data.remote.model.MovieDados
 import br.com.rubiomovies.utilities.Constants
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +48,7 @@ class DetailMoviesActivity : AppCompatActivity() {
     private fun init(){
 
 
-        val movie:MovieDados? = intent.getParcelableExtra("dados")
+        val movie: MovieDados? = intent.getParcelableExtra("dados")
         val url = "${Constants.BASE_URI_MOVIE_IMAGES}${movie?.poster}"
         with(binding){
         Glide.with(this@DetailMoviesActivity).load(url).into(posterImage)
